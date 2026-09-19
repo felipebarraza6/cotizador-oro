@@ -1,15 +1,11 @@
 /**
- * Cliente mínimo contra Yggdra públicos.
- * Contrato que cualquier landing de tenant puede reutilizar.
- *
- * POST /api/public/quote-preview/
- * POST /api/public/quotes/
- * GET  /api/public/landing-config/?slug=
+ * Cliente de la API pública (Gungir / backend).
+ * POST /public/quote-preview/ · POST /public/quotes/
  */
 
 export const API_BASE =
-  import.meta.env.VITE_YGGDRA_API_BASE?.replace(/\/$/, "") ||
-  "https://api.yggdra.cl/api";
+  (import.meta.env.VITE_API_BASE || import.meta.env.VITE_YGGDRA_API_BASE || "")
+    .replace(/\/$/, "") || "https://api.yggdra.cl/api";
 
 export const BRANCH_SLUG = import.meta.env.VITE_BRANCH_SLUG || "casa-oro";
 export const BRAND_NAME = import.meta.env.VITE_BRAND_NAME || "Casa de Oro";
@@ -31,7 +27,7 @@ export interface QuotePreview {
   purity_factor: number;
   total_clp: number;
   expires_at: string | null;
-  source: "yggdra" | "local-fallback";
+  source: "live" | "local-fallback";
 }
 
 export interface QuoteSubmitResult {
@@ -92,7 +88,7 @@ export async function fetchQuotePreview(
       weight_g,
       slug: BRANCH_SLUG,
     });
-    return { ...remote, source: "yggdra" };
+    return { ...remote, source: "live" };
   } catch (e) {
     const status = (e as { status?: number }).status;
     if (!status || status === 404 || status === 405 || status === 501 || status >= 500) {

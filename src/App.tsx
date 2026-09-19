@@ -93,8 +93,8 @@ export default function App() {
           <span className="badge">Precio del día · prototipo</span>
           <h1>Cotizá tu oro en 30 segundos</h1>
           <p className="lead">
-            Oferta clara con ley, peso y spread. Esta landing es un proyecto aparte: solo
-            consume la API pública de Yggdra (la misma que usaría cualquier tenant Gungir).
+            Oferta clara con ley, peso y spread. Cotizá al instante y te confirmamos en el
+            local.
           </p>
           <ul className="points">
             <li>Sin instalar app</li>
@@ -169,7 +169,7 @@ export default function App() {
                 Ref. {formatCLP(preview.price_ref_clp_per_g)}/g · ley{" "}
                 {(preview.purity_factor * 100).toFixed(1)}% · spread{" "}
                 {(preview.spread * 100).toFixed(0)}% ·{" "}
-                {preview.source === "yggdra" ? "Yggdra" : "preview local"}
+                {preview.source === "live" ? "precio del día" : "estimación"}
               </div>
             )}
           </div>
@@ -203,15 +203,8 @@ export default function App() {
       </div>
 
       <footer className="footer">
-        <span>
-          Powered by Yggdra · producto general{" "}
-          <a href="https://github.com/felipebarraza6/gungir" target="_blank" rel="noreferrer">
-            Gungir
-          </a>
-        </span>
-        <a href="https://github.com/felipebarraza6/cotizador-oro" target="_blank" rel="noreferrer">
-          código de esta landing
-        </a>
+        <span>Powered by Gungir</span>
+        <span>Precio referencial · sujeto a verificación en local</span>
       </footer>
     </div>
   );

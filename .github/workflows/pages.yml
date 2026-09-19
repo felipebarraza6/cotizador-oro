@@ -27,7 +27,7 @@ jobs:
           bun install
           bun run build
         env:
-          VITE_YGGDRA_API_BASE: https://api.yggdra.cl/api
+          VITE_API_BASE: https://api.yggdra.cl/api
           VITE_BRANCH_SLUG: casa-oro
           VITE_BRAND_NAME: Casa de Oro
       - uses: actions/upload-pages-artifact@v3
